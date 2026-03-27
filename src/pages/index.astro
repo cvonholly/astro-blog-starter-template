@@ -2,11 +2,18 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro'; // NEW: Imported your date component
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { Image } from 'astro:assets';
 import myProfileImage from '../assets/profile.png';
+import { getCollection } from 'astro:content';
 
 const pageTitle = "Carl von Holly-Ponientzietz | Energy & Engineering";
+
+// Fetch and sort the blog posts by date
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <!doctype html>
@@ -14,134 +21,230 @@ const pageTitle = "Carl von Holly-Ponientzietz | Energy & Engineering";
   <head>
     <BaseHead title={pageTitle} description={SITE_DESCRIPTION} />
     <style>
-      /* Scoped styles specific to your CV content */
-      main { font-family: 'Fira Sans', sans-serif; line-height: 1.6; color: #304263; max-width: 2000px; margin: 0 auto; padding: 2rem; }
+      /* --- CV BASE STYLES --- */
+      main {
+        /* background-color: hotpink; Add this temporarily! */
+         font-family: 'Fira Sans', sans-serif; line-height: 1.6; color: #304263; max-width: 1500px; margin: 0 auto; padding: 1rem; }
+
       h1, h2, h3 { color: #304263; }
       
-      /* Updated Hero Section for side-by-side layout */
-      .hero { 
-        display: flex; 
-        align-items: center; /* Vertically centers the image and text */
-        gap: 2rem; /* Adds space between the image and text */
-        margin-bottom: 3rem; 
+      /* --- LAYOUT GRID --- */
+      .layout-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* Adjusted to give the blog column a bit more width */
+        gap: 4rem; 
+        align-items: start;
       }
       
-      .profile-pic {
-        width: 180px; /* Adjust this to make it bigger/smaller */
-        height: 180px;
-        border-radius: 50%;
-        object-fit: cover;
-        flex-shrink: 0; /* Prevents the image from squishing */
-        border: 4px solid #e2e8f0;
-      }
-      
-      /* Makes the layout stack on mobile phones */
-      @media (max-width: 768px) {
-        .hero {
-          flex-direction: column;
-          text-align: center;
+      @media (max-width: 1024px) {
+        .layout-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
         }
       }
 
+      /* --- HERO SECTION --- */
+      .hero { 
+        display: flex; 
+        align-items: center; 
+        gap: 2rem; 
+        margin-bottom: 3rem; 
+      }
+      .profile-pic {
+        width: 180px; 
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0; 
+        border: 4px solid #e2e8f0;
+      }
+      @media (max-width: 768px) {
+        .hero { flex-direction: column; text-align: center; }
+      }
+
+      /* --- CV CONTENT STYLES --- */
       .section { margin-bottom: 2.5rem; }
       .section a { color: #e11d48; text-decoration: none; font-weight: 500; }
       .section a:hover { text-decoration: underline; }
       .tag { background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9rem; margin-right: 0.5rem; display: inline-block; margin-bottom: 0.5rem; color: #304263; }
       .subtitle { font-weight: 500; color: #475569; margin-bottom: 1.5rem; }
-      
-      /* Fixed contact links margin for the new layout */
       .contact-links { margin-top: 1rem; }
       .contact-links a { color: #e11d48; text-decoration: none; font-weight: bold; margin-right: 1rem; }
       .contact-links a:hover { text-decoration: underline; }
-      
       .job { margin-bottom: 1.5rem; }
-      ul { padding-left: 1.5rem; }
-      li { margin-bottom: 0.5rem; }
+      .cv-column ul { padding-left: 1.5rem; }
+      .cv-column li { margin-bottom: 0.5rem; }
+
+      /* --- BLOG SIDEBAR STYLES (Adapted from your Blog Page) --- */
+      .blog-sidebar {
+        position: sticky; 
+        top: 2rem;
+      }
+      .blog-sidebar h2 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+      }
+      .blog-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem; /* Matches your blog gap */
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      .blog-list li {
+        width: 100%;
+      }
+      .blog-list li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      .blog-list li img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+      }
+      .blog-list li a {
+        display: block;
+      }
+      .blog-title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1.2;
+        font-size: 1.4rem;
+        margin-bottom: 0.25rem;
+      }
+      .blog-date {
+        margin: 0;
+        color: rgb(var(--gray));
+      }
+      .blog-list li a:hover .blog-title,
+      .blog-list li a:hover .blog-date {
+        color: rgb(var(--accent));
+      }
+      .blog-list a:hover img {
+        box-shadow: var(--box-shadow);
+      }
     </style>
   </head>
   <body>
     <Header />
     
     <main>
-      <section class="hero">
-        <Image src={myProfileImage} alt="Carl von Holly-Ponientzietz" class="profile-pic" />
+      <div class="layout-grid">
         
-        <div class="hero-content">
-          <h1 style="margin-top: 0;">Hi, I'm Carl von Holly-Ponientzietz 👋</h1>
-          <p class="subtitle">Electrical Engineer | Energy Markets Enthusiast | Climate Tech Advocate</p>
-          <p>
-            I am passionate about addressing challenges in the energy sector through engineering innovation and policy design. Based in Zurich, I specialize in renewable energy data analytics and techno-economic modeling.
-          </p>
-          <div class="contact-links">
-            <a href="mailto:cvonholly@ikmail.com">Email Me</a>
-            <a href="https://github.com/cvonholly" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/cvonholly/" target="_blank">LinkedIn</a>
-          </div>
+        <div class="cv-column">
+          <section class="hero">
+            <Image src={myProfileImage} alt="Carl von Holly-Ponientzietz" class="profile-pic" />
+            <div class="hero-content">
+              <h1 style="margin-top: 0;">Hi, I'm Carl von Holly-Ponientzietz 👋</h1>
+              <p class="subtitle">Electrical Engineer |  Control Systems | Game Theory | Power System Stability | Climate Tech Enthusiast</p>
+              <p>
+                I am passionate about addressing challenges in the energy sector through engineering innovation and policy design. 
+                Based in Zurich, I specialize in control theory and game theory applied to power system.
+              </p>
+              <div class="contact-links">
+                <a href="mailto:cvonholly@ikmail.com">Email Me</a>
+                <a href="https://github.com/cvonholly" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/cvonholly/" target="_blank">LinkedIn</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>🎓 My Academic Journey</h2>
+            <p>I am very close to finishing my MSc candidate in Energy Science and Technology at ETH Zurich (2024-2026). My studies dive deep into Power Systems, Control Systems, Optimization, Game Theory, and Energy Markets.</p>
+            <ul>
+              <li><strong>Master's Thesis:</strong> "A Coalitional Stable and Fair Reward Allocation for Dynamic Virtual Power Plants" <a href="https://drive.google.com/file/d/1pCPoJt1C8YLEp0EDTyXuijjh6lYNsOHB/view?usp=sharing" target="_blank">(full text)</a> at the <a href="https://control.ee.ethz.ch/" target="_blank">Automatic Control Laboratory</a>.
+                I achieved a 6.0 (the highest possible grade) for proposing a new allocation scheme and control design for distributed energy resources.
+                During the thesis, we (Dr. Häberle, Dr. Bolognani, Prof. Dörfler, me) submitted a paper to the <a href="https://power-up.us/" target="_blank">PowerUp 2026 Conference</a>.</li>
+              <li><strong>Project with the <a href="https://epg.ethz.ch/" target="_blank">Energy and Technology Policy Group</a>:</strong> I applied Natural Language Processing and Information Theory to patent data to measure the complexity of low-carbon energy technologies. 
+                My team (Dr. Anurag Panda, Lingxi Tang) even presented this project at the <a href="https://complexity.world/" target="_blank">Conference on Economic Complexity</a>!</li>
+              <li><strong>BSc Electrical Engineering:</strong> Also from ETH Zurich (2020-2023), where I wrote my thesis on "Optimal Battery Parameterization for Peak Load Reduction" in collaboration with EKZ.</li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <h2>💻 My Experience</h2>
+            <div class="job">
+              <h3>Photovoltaic Data Analytics Intern @ <a href="https://www.candi.solar/" target="_blank">candi solar</a></h3>
+              <p><em>Zurich and South Africa | Sept 2023 - Mar 2024</em></p>
+              <ul>
+                <li>Developed automated issue detection pipelines in Python and AWS, drastically reducing reaction time to solar plant faults.</li>
+                <li>Designed and deployed performance monitoring dashboards using Looker Studio, Python, and AWS for a fleet of commercial PV plants.</li>
+              </ul>
+            </div>
+            <div class="job">
+              <h3>Teaching & Research @ ETH Zurich</h3>
+              <ul>
+                <li><strong>Teaching Assistant (<a href="https://control.ee.ethz.ch/" target="_blank">IfA</a> & <a href="https://iis.ee.ethz.ch/" target="_blank">IIS</a>):</strong> Supported over 150 students in Control Systems and Electronic Circuits.</li>
+                <li><strong>Research Assistant (<a href="https://hvl.ee.ethz.ch/" target="_blank">HVL</a>):</strong> Implemented code in Python and MATLAB to analyze <a href="https://hvl.ee.ethz.ch/research/high-voltage-gasesous-insulation.html" target="_blank">circuit breaker insulation equipment</a>.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>🌍 Tech for Good & Policy</h2>
+            <ul>
+              <li><strong>Hackathon for Climate Change (OpenAI):</strong> I developed a Chrome extension using a GPT model to classify green jobs and compare green skills. (<a href="https://drive.google.com/file/d/1valeur984NnuG94DTubEigo8sTsRqVQN/view?usp=sharing" target="_blank">Watch application video</a>)</li>
+              <li><strong>Mini Makeathon (<a href="https://eth4d.ethz.ch/" target="_blank">ETH4D</a>):</strong> Prototyped <a href="https://www.linkedin.com/posts/global-health-engineering_last-month-ghe-hosted-its-first-ever-makeathon-activity-7354434362555138048-PpTH/" target="_blank">movable cooling rooftops for Bangladesh</a>.</li>
+              <li><strong>Policy Sprint Member:</strong> Collaborated with stakeholders in Luzern to formulate policies aimed at making the Swiss transportation sector climate-neutral by 2050 (<a href="https://www.20min.ch/story/klimaschutz-parteienuebergreifende-zusammenarbeit-in-der-schweiz-103223274" target="_blank">read article</a>).</li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <h2>🛠️ My Toolbox</h2>
+            <div>
+              <span class="tag">Python</span>
+              <span class="tag">MATLAB</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Git</span>
+              <span class="tag">AWS (Lambda, EC2)</span>
+              <span class="tag">Looker Studio</span>
+              <span class="tag">LaTeX</span>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>🚴 Off the Clock</h2>
+            <p>When I'm not coding or analyzing energy markets, I like to stay active and give back to the community:</p>
+            <ul>
+              <li><strong>Community:</strong> I'm an active ambassador for <a href="https://foodsharing.de/" target="_blank">foodsharing</a> Zurich
+                where we reduce food waste by cooperating with local businesses. Also, the <a href="https://ee.ethz.ch/de/departement/organisationen/itet-netto-null-working-group.html" target="_blank">D-ITET Netto Null Arbeitsgruppe 
+                </a> was initaited by myself, leading to new courses for students which focus on net zero emissions.
+              </li>
+              <li><strong>On the Move:</strong> You can catch me delivering organic fruits through the city as a bike messenger for <a href="https://oepfelchasper.ch/de/" target="_blank">Öpfelchasper</a>. I'm also a road cycling coach at <a href="https://asvz.ch/426-sportfahrplan?f[0]=instructor:6896" target="_blank">ASVZ</a> and enjoy ski touring in <a href="https://aacz.ch/de/" target="_blank">AACZ</a>. 
+                In 2024, I finished the <a href="https://www.strava.com/activities/11658900244/overview" target="_blank">"Barockman"</a> long distance (Ironman) triathlon. </li>
+              <li><strong>Music:</strong> I (used to) play the trombone in a <a href="https://www.jso-berlin-haendel.de/" target="_blank">symphony orchestra</a>!</li>
+            </ul>
+          </section>
         </div>
-      </section>
 
-      <section class="section">
-        <h2>🎓 My Academic Journey</h2>
-        <p>I am currently an MSc candidate in Energy Science and Technology at ETH Zurich (2024-2026). My studies dive deep into Power Systems, Control Systems, Optimization, Game Theory, and Energy Markets.</p>
-        <ul>
-          <li><strong>Master's Thesis:</strong> "A Coalitional Stable and Fair Reward Allocation for Dynamic Virtual Power Plants". I achieved a 6.0 (the highest possible grade) for proposing a new allocation scheme and control design for distributed energy resources.</li>
-          <li><strong>Project with <a href="https://epg.ethz.ch/" target="_blank">EPG</a>:</strong> I applied Natural Language Processing and Information Theory to patent data to measure the complexity of low-carbon energy technologies. My team even presented this at the <a href="https://complexity.world/" target="_blank">Conference on Economic Complexity</a>!</li>
-          <li><strong>BSc Electrical Engineering:</strong> Also from ETH Zurich (2020-2023), where I wrote my thesis on "Optimal Battery Parameterization for Peak Load Reduction" in collaboration with EKZ.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>💻 What I Do (Professionally)</h2>
-        <div class="job">
-          <h3>Photovoltaic Data Analytics Intern @ <a href="https://www.candi.solar/" target="_blank">candi solar</a></h3>
-          <p><em>Zurich and South Africa | Sept 2023 - Mar 2024</em></p>
-          <ul>
-            <li>Developed automated issue detection pipelines in Python and AWS, drastically reducing reaction time to solar plant faults.</li>
-            <li>Designed and deployed performance monitoring dashboards using Looker Studio, Python, and AWS for a fleet of commercial PV plants.</li>
+        <aside class="blog-sidebar">
+          <h2>📝 Recent Thoughts</h2>
+          <ul class="blog-list">
+            {
+              posts.map((post) => (
+                <li>
+                  {/* Fixed Link to use post.id */}
+                  <a href={`/blog/${post.id}/`}>
+                    {/* Reintroduced the Hero Image */}
+                    <img width={720} height={360} src={post.data.heroImage} alt="" />
+                    {/* Reintroduced your Title and Formatted Date format */}
+                    <h4 class="blog-title">{post.data.title}</h4>
+                    <p class="blog-date">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </a>
+                </li>
+              ))
+            }
           </ul>
-        </div>
-        <div class="job">
-          <h3>Teaching & Research @ ETH Zurich</h3>
-          <ul>
-            <li><strong>Teaching Assistant (<a href="https://control.ee.ethz.ch/" target="_blank">IfA</a> & <a href="https://iis.ee.ethz.ch/" target="_blank">IIS</a>):</strong> Supported over 150 students in Control Systems and Electronic Circuits.</li>
-            <li><strong>Research Assistant (<a href="https://hvl.ee.ethz.ch/" target="_blank">HVL</a>):</strong> Implemented code in Python and MATLAB to analyze <a href="https://hvl.ee.ethz.ch/research/high-voltage-gasesous-insulation.html" target="_blank">circuit breaker insulation equipment</a>.</li>
-          </ul>
-        </div>
-      </section>
+        </aside>
 
-      <section class="section">
-        <h2>🌍 Tech for Good & Policy</h2>
-        <ul>
-          <li><strong>Hackathon for Climate Change (OpenAI):</strong> I developed a Chrome extension using a GPT model to classify green jobs and compare green skills. (<a href="https://drive.google.com/file/d/1valeur984NnuG94DTubEigo8sTsRqVQN/view?usp=sharing" target="_blank">Watch application video</a>)</li>
-          <li><strong>Mini Makeathon (<a href="https://eth4d.ethz.ch/" target="_blank">ETH4D</a>):</strong> Prototyped <a href="https://www.linkedin.com/posts/global-health-engineering_last-month-ghe-hosted-its-first-ever-makeathon-activity-7354434362555138048-PpTH/" target="_blank">movable cooling rooftops for Bangladesh</a>.</li>
-          <li><strong>Policy Sprint Member:</strong> Collaborated with stakeholders in Luzern to formulate policies aimed at making the Swiss transportation sector climate-neutral by 2050 (<a href="https://www.20min.ch/story/klimaschutz-parteienuebergreifende-zusammenarbeit-in-der-schweiz-103223274" target="_blank">read article</a>).</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>🛠️ My Toolbox</h2>
-        <div>
-          <span class="tag">Python</span>
-          <span class="tag">MATLAB</span>
-          <span class="tag">SQL</span>
-          <span class="tag">Git</span>
-          <span class="tag">AWS (Lambda, EC2)</span>
-          <span class="tag">Looker Studio</span>
-          <span class="tag">LaTeX</span>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>🚴 Off the Clock</h2>
-        <p>When I'm not coding or analyzing energy markets, I like to stay active and give back to the community:</p>
-        <ul>
-          <li><strong>Community:</strong> I'm the founder of the <a href="https://ee.ethz.ch/de/departement/organisationen/itet-netto-null-working-group.html" target="_blank">D-ITET Netto Null Arbeitsgruppe</a> and an active ambassador for <a href="https://foodsharing.de/" target="_blank">foodsharing</a> Zurich, managing daily operations with six co-ambassadors.</li>
-          <li><strong>On the Move:</strong> You can catch me delivering organic fruits through the city as a bike messenger for <a href="https://oepfelchasper.ch/de/" target="_blank">Öpfelchasper</a>. 
-			I'm also a road cycling coach at <a href="https://asvz.ch/426-sportfahrplan?f[0]=instructor:6896" target="_blank">ASVZ</a> and enjoy ski touring in <a href="https://aacz.ch/de/" target="_blank">AACZ</a>.
-			In 2024, I was really into Triathlon and finished the <a href="https://www.strava.com/activities/11658900244/overview" target="_blank">"Barockman"</a> (same distance as Ironman) near Dresden, winning my age group. It was extremly humbling and I'm still very happy to be able to complete this immense challenge.</li>
-          <li><strong>Music:</strong> I (used to) play the trombone in a <a href="https://www.jso-berlin-haendel.de/" target="_blank">symphony orchestra</a>!</li>
-        </ul>
-      </section>
+      </div>
     </main>
 
     <Footer />
