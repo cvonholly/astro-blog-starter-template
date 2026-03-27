@@ -3,123 +3,109 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const pageTitle = "Carl von Holly-Ponientzietz | Energy & Engineering";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section aria-labelledby="cv-title">
-				<h1 id="cv-title">Carl <strong>von Holly-Ponientzietz</strong></h1>
-				<p>
-					Electrical Engineer and MSc candidate specializing in Power Systems, Control Theory, and
-					Energy Markets. Experienced in renewable energy data analytics and techno-economic modeling.
-					Passionate about addressing challenges in the energy sector through engineering innovation and
-					policy design.
-				</p>
+  <head>
+    <BaseHead title={pageTitle} description={SITE_DESCRIPTION} />
+    <style>
+      /* Scoped styles specific to your CV content */
+      main { font-family: 'Fira Sans', sans-serif; line-height: 1.6; color: #304263; max-width: 900px; margin: 0 auto; padding: 2rem; }
+      h1, h2, h3 { color: #304263; }
+      .hero { text-align: center; margin-bottom: 3rem; }
+      .section { margin-bottom: 2.5rem; }
+      .tag { background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9rem; margin-right: 0.5rem; display: inline-block; margin-bottom: 0.5rem; }
+      .subtitle { font-weight: 500; color: #475569; margin-bottom: 1.5rem; }
+      .contact-links { margin-top: 1.5rem; }
+      .contact-links a { color: #e11d48; text-decoration: none; font-weight: bold; margin: 0 0.5rem; }
+      .contact-links a:hover { text-decoration: underline; }
+      .job { margin-bottom: 1.5rem; }
+      ul { padding-left: 1.5rem; }
+      li { margin-bottom: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <Header />
+    
+    <main>
+      <section class="hero">
+        <h1>Hi, I'm Carl von Holly-Ponientzietz 👋</h1>
+        <p class="subtitle">Electrical Engineer | Energy Markets Enthusiast | Climate Tech Advocate</p>
+        <p>
+          I am passionate about addressing challenges in the energy sector through engineering innovation and policy design. Based in Zurich, I specialize in renewable energy data analytics and techno-economic modeling.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:cvonholly@ikmail.com">Email Me</a> | 
+          <a href="https://github.com/cvonholly">GitHub</a> | 
+          <a href="https://www.linkedin.com/in/cvonholly/">LinkedIn</a>
+        </div>
+      </section>
 
-				<h3>Contact details</h3>
-				<ul>
-					<li>Email: <a href="mailto:cvonholly@ikmail.com">cvonholly@ikmail.com</a></li>
-					<li>Phone: <a href="tel:+41778144457">+41 77 814 44 57</a></li>
-					<li>GitHub: <a href="https://github.com/cvonholly">github.com/cvonholly</a></li>
-					<li>LinkedIn: <a href="https://www.linkedin.com/in/cvonholly/">linkedin.com/in/cvonholly</a></li>
-					<li>Address: Krönleinstrasse 57, 8044 Zurich</li>
-				</ul>
+      <section class="section">
+        <h2>🎓 My Academic Journey</h2>
+        <p>I am currently an MSc candidate in Energy Science and Technology at ETH Zurich (2024-2026). My studies dive deep into Power Systems, Control Systems, Optimization, Game Theory, and Energy Markets.</p>
+        <ul>
+          <li><strong>Master's Thesis:</strong> "A Coalitional Stable and Fair Reward Allocation for Dynamic Virtual Power Plants". I achieved a 6.0 (the highest possible grade) for proposing a new allocation scheme and control design for distributed energy resources.</li>
+          <li><strong>Project with EPG:</strong> I applied Natural Language Processing and Information Theory to patent data to measure the complexity of low-carbon energy technologies. I even presented this at the Conference on Economic Complexity!</li>
+          <li><strong>BSc Electrical Engineering:</strong> Also from ETH Zurich (2020-2023), where I wrote my thesis on "Optimal Battery Parameterization for Peak Load Reduction".</li>
+        </ul>
+      </section>
 
-				<h3>Personal information</h3>
-				<ul>
-					<li>Year of birth: <strong>2001</strong></li>
-					<li>Citizenship: <strong>German</strong></li>
-					<li>Languages: <strong>German</strong> (native), <strong>English</strong> (C1)</li>
-				</ul>
+      <section class="section">
+        <h2>💻 What I Do (Professionally)</h2>
+        <div class="job">
+          <h3>Photovoltaic Data Analytics Intern @ candi solar</h3>
+          <p><em>Zurich and South Africa | Sept 2023 - Mar 2024</em></p>
+          <ul>
+            <li>Developed automated issue detection pipelines in Python and AWS, drastically reducing reaction time to solar plant faults.</li>
+            <li>Designed and deployed performance monitoring dashboards using Looker Studio, Python, and AWS for a fleet of commercial PV plants.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <h3>Teaching & Research @ ETH Zurich</h3>
+          <ul>
+            <li><strong>Teaching Assistant:</strong> Supported over 150 students in Control Systems and Electronic Circuits.</li>
+            <li><strong>Research Assistant (HVL):</strong> Implemented code in Python and MATLAB to analyze circuit breaker insulation equipment.</li>
+          </ul>
+        </div>
+      </section>
 
-				<h3>Skills</h3>
-				<ul>
-					<li>Team player, dedication, adaptability, fast learner</li>
-					<li>Python, MATLAB, SQL, Git</li>
-					<li>AWS (Lambda, EC2), Google Sheets, Looker Studio, LaTeX</li>
-					<li>Control systems, (non-)linear optimization, energy markets</li>
-				</ul>
+      <section class="section">
+        <h2>🌍 Tech for Good & Policy</h2>
+        <ul>
+          <li><strong>Hackathon for Climate Change (OpenAI):</strong> I developed a Chrome extension using a GPT model to classify green jobs and compare green skills.</li>
+          <li><strong>Mini Makeathon (ETH4D):</strong> Prototyped movable cooling rooftops for Bangladesh.</li>
+          <li><strong>Policy Sprint Member:</strong> Collaborated with stakeholders in Luzern to formulate policies aimed at making the Swiss transportation sector climate-neutral by 2050.</li>
+        </ul>
+      </section>
 
-				<h3>Education</h3>
-				<p>
-					<strong>MSc Energy Science and Technology</strong>, ETH Zurich (2024–2026)<br />
-					Thesis: <em>A Coalitional Stable and Fair Reward Allocation for Dynamic Virtual Power Plants.</em><br />
-					Current grade average: <strong>5.49</strong> (top course grade achieved: <strong>6.0</strong>)
-				</p>
-				<p>
-					<strong>BSc Electrical Engineering and Information Technology</strong>, ETH Zurich (2020–2023)<br />
-					Thesis: <em>Optimal Battery Parameterization for Peak Load Reduction.</em><br />
-					Grade average: <strong>5.26</strong> (degree average: <strong>4.94</strong>)
-				</p>
+      <section class="section">
+        <h2>🛠️ My Toolbox</h2>
+        <div>
+          <span class="tag">Python</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Git</span>
+          <span class="tag">AWS (Lambda, EC2)</span>
+          <span class="tag">Looker Studio</span>
+          <span class="tag">LaTeX</span>
+        </div>
+      </section>
 
-				<h3>Work and research experience</h3>
-				<ul>
-					<li>
-						<strong>Photovoltaic Data Analytics Intern</strong>,
-						<a href="https://www.candi.solar/">candi solar</a> (Zurich &amp; South Africa, 2023.09–2024.03)
-					</li>
-					<li><strong>Teaching Assistant</strong>, IfA and IIS, ETH Zurich (2022.09–2024.02)</li>
-					<li><strong>Research Assistant</strong>, HVL, ETH Zurich (2022.04–2022.11)</li>
-				</ul>
+      <section class="section">
+        <h2>🚴 Off the Clock</h2>
+        <p>When I'm not coding or analyzing energy markets, I like to stay active and give back to the community:</p>
+        <ul>
+          <li><strong>Community:</strong> I'm the founder of the D-ITET Netto Null Arbeitsgruppe and an active ambassador for foodsharing Zurich, managing daily operations with six co-ambassadors.</li>
+          <li><strong>On the Move:</strong> You can catch me delivering organic fruits through the city as a bike messenger for Öpfelchasper. I'm also a road cycling coach at ASVZ and enjoy ski touring in AACZ.</li>
+          <li><strong>Music:</strong> I play the trombone in a symphony orchestra!</li>
+        </ul>
+      </section>
+    </main>
 
-				<h3>Voluntary activities &amp; hobbies</h3>
-				<ul>
-					<li>
-						Civil society: Founder of the D-ITET Netto Null Arbeitsgruppe and ambassador of
-						<a href="https://foodsharing.de/">foodsharing Zurich</a>
-					</li>
-					<li>
-						Sports: Road cycling coach at
-						<a href="https://asvz.ch/426-sportfahrplan?f[0]=instructor:6896">ASVZ</a>, ski touring in
-						<a href="https://aacz.ch/de/">AACZ</a>
-					</li>
-					<li>
-						Music: Trombone musician in
-						<a href="https://www.jso-berlin-haendel.de/">symphony orchestra</a>
-					</li>
-				</ul>
-			</section>
-
-			<hr />
-
-			<section aria-labelledby="hello-title">
-				<h2 id="hello-title">🧑‍🚀 Hello, Astronaut!</h2>
-				<p>
-					Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-					template serves as a lightweight, minimally-styled starting point for anyone looking to build
-					a personal website, blog, or portfolio with Astro.
-				</p>
-				<p>
-					This template comes with a few integrations already configured in your
-					<code>astro.config.mjs</code> file. You can customize your setup with
-					<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-					React, or Vue to your project.
-				</p>
-				<p>Here are a few ideas on how to get started with the template:</p>
-				<ul>
-					<li>Edit this page in <code>src/pages/index.astro</code></li>
-					<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-					<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-					<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-					<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-				</ul>
-				<p>
-					Have fun! If you get stuck, remember to <a href="https://docs.astro.build/">read the docs</a>
-					or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-				</p>
-				<p>
-					Looking for a blog template with a bit more personality? Check out
-					<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a> by
-					<a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-				</p>
-			</section>
-		</main>
-		<Footer />
-	</body>
+    <Footer />
+  </body>
 </html>
