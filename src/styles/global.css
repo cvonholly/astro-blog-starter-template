@@ -61,7 +61,6 @@ pre {
     overflow-x: auto; 
 }
 main { 
-  box-sizing: border-box; /* 👈 ADD THIS: Keeps padding inside the 100% width */
   width: 100%; 
   max-width: 1200px; 
   margin: 0 auto; 

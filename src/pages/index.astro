@@ -21,19 +21,42 @@ const posts = (await getCollection('blog')).sort(
   <head>
     <BaseHead title={pageTitle} description={SITE_DESCRIPTION} />
     <style>
+      /* =========================================
+         1. THE NUCLEAR MOBILE RESET
+         ========================================= */
+      
+      /* Force padding and borders to stay inside element widths */
+      *, *::before, *::after {
+        box-sizing: border-box !important;
+      }
+
+      /* Lock the body width to the screen and kill side-scroll */
+      html, body {
+        max-width: 100vw;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Force long links or words to wrap instead of pushing the screen wide */
+      p, a, li, h1, h2, h3, h4, span {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+      }
+
+      /* Ensure no image or SVG can ever stretch beyond its parent */
+      img, svg, picture {
+        max-width: 100% !important;
+        height: auto;
+        display: block;
+      }
       /* --- CV BASE STYLES --- */
       main {
         /* background-color: hotpink; Add this temporarily! */
          font-family: 'Fira Sans', sans-serif; line-height: 1.6; color: #304263; max-width: 1500px; margin: 0 auto; padding: 1rem; }
 
       h1, h2, h3 { color: #304263; }
-
-      html, body {
-        overflow-x: hidden; /* 👈 STRICTLY prevents the page from sliding sideways */
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      }
       
       /* --- LAYOUT GRID --- */
       .layout-grid {
@@ -65,24 +88,6 @@ const posts = (await getCollection('blog')).sort(
         flex-shrink: 0; 
         border: 4px solid #e2e8f0;
       }
-      /* --- EXTRA MOBILE POLISH --- */
-@media (max-width: 768px) {
-  /* Reduce padding so text isn't squished on phones */
-  main {
-    padding: 1rem;
-  }
-  
-  /* Make contact links wrap neatly if they run out of space */
-  .contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-  .contact-links a {
-    margin: 0; /* Resets the right margin since we are using gap now */
-  }
-}
 
       /* --- CV CONTENT STYLES --- */
       .section { margin-bottom: 2.5rem; }
