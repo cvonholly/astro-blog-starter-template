@@ -75,19 +75,30 @@ const posts = (await getCollection('blog')).sort(
 
       /* --- HERO SECTION --- */
       .hero { 
-        display: flex; 
-        align-items: center; 
-        gap: 2rem; 
-        margin-bottom: 3rem; 
-      }
-      .profile-pic {
-        width: 180px; 
-        height: 180px;
-        border-radius: 50%;
-        object-fit: cover;
-        flex-shrink: 0; 
-        border: 4px solid #e2e8f0;
-      }
+  display: flex;
+  flex-direction: column; /* Stacks everything vertically */
+  align-items: flex-start; /* Aligns content to the left (use 'center' if you want it all centered!) */
+  margin-bottom: 3rem; 
+  width: 100%;
+}
+
+.profile-pic {
+  width: 180px; /* Kept it a good size since it has its own line now */
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e2e8f0;
+  margin-bottom: 0.5rem; /* Space between the image and the H1 */
+}
+
+/* Optional: If you want the links to align nicely with the left edge */
+.contact-links { 
+  margin-top: 1rem; 
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 1rem;
+  align-items: center;
+}
 
       /* --- CV CONTENT STYLES --- */
       .section { margin-bottom: 2.5rem; }
@@ -164,21 +175,24 @@ const posts = (await getCollection('blog')).sort(
         
         <div class="cv-column">
           <section class="hero">
-            <Image src={myProfileImage} alt="Carl von Holly-Ponientzietz" class="profile-pic" />
-            <div class="hero-content">
-              <h1 style="margin-top: 0;">Hi, I'm Carl von Holly-Ponientzietz 👋</h1>
-              <p class="subtitle">Electrical Engineer |  Control Systems | Game Theory | Power System Stability | Climate Tech Enthusiast</p>
-              <p>
-                I am passionate about addressing challenges in the energy sector through engineering innovation and policy design. 
-                Based in Zurich, I specialize in Control Theory and Game Theory applied to power system.
-              </p>
-              <div class="contact-links">
-                <a href="mailto:cvonholly@ikmail.com">Email Me</a>
-                <a href="https://github.com/cvonholly" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/cvonholly/" target="_blank">LinkedIn</a>
-              </div>
-            </div>
-          </section>
+  <Image src={myProfileImage} alt="Carl von Holly-Ponientzietz" class="profile-pic" />
+  
+  <h1 style="margin-top: 1rem;">Hi, I'm Carl von Holly-Ponientzietz 👋</h1>
+  <p class="subtitle">Electrical Engineer |  Control Systems | Game Theory | Power System Stability | Climate Tech Enthusiast</p>
+  <p>
+    I am passionate about addressing challenges in the energy sector through engineering innovation and policy design. 
+    Based in Zurich, I specialize in Control Theory and Game Theory applied to power system.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:cvonholly@ikmail.com">Email Me</a>
+    <a href="https://github.com/cvonholly" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/cvonholly/" target="_blank">LinkedIn</a>
+    <a href="https://www.strava.com/" target="_blank" class="strava-link" title="Follow me on Strava">
+      <span class="sr-only">Strava</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" style="margin-left: 0.25rem;"><path fill="currentColor" d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"></path></svg>
+    </a>
+  </div>
+</section>
 
           <section class="section">
             <h2>🎓 My Academic Journey</h2>
