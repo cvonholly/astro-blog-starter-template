@@ -5,13 +5,8 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { Image } from 'astro:assets';
 import myProfileImage from '../assets/profile.png';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../components/FormattedDate.astro';
 
 const pageTitle = "Carl von Holly-Ponientzietz | Energy & Engineering";
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
 ---
 
 <!doctype html>
@@ -20,52 +15,8 @@ const posts = (await getCollection('blog'))
     <BaseHead title={pageTitle} description={SITE_DESCRIPTION} />
     <style>
       /* Scoped styles specific to your CV content */
-      main { font-family: 'Fira Sans', sans-serif; line-height: 1.6; color: #304263; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+      main { font-family: 'Fira Sans', sans-serif; line-height: 1.6; color: #304263; max-width: 2000px; margin: 0 auto; padding: 2rem; }
       h1, h2, h3 { color: #304263; }
-      .home-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-        gap: 2rem;
-      }
-      .cv-column {
-        min-width: 0;
-      }
-      .blog-column {
-        min-width: 0;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 1rem;
-        height: fit-content;
-        position: sticky;
-        top: 1rem;
-      }
-      .blog-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .blog-list li {
-        margin: 0;
-        padding: 0.9rem 0;
-        border-bottom: 1px solid #e2e8f0;
-      }
-      .blog-list li:last-child {
-        border-bottom: none;
-      }
-      .blog-list a {
-        color: #304263;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      .blog-list a:hover {
-        color: #e11d48;
-      }
-      .blog-date {
-        margin: 0.25rem 0 0;
-        color: #64748b;
-        font-size: 0.95rem;
-      }
       
       /* Updated Hero Section for side-by-side layout */
       .hero { 
@@ -90,12 +41,6 @@ const posts = (await getCollection('blog'))
           flex-direction: column;
           text-align: center;
         }
-        .home-layout {
-          grid-template-columns: 1fr;
-        }
-        .blog-column {
-          position: static;
-        }
       }
 
       .section { margin-bottom: 2.5rem; }
@@ -118,8 +63,6 @@ const posts = (await getCollection('blog'))
     <Header />
     
     <main>
-      <div class="home-layout">
-        <div class="cv-column">
       <section class="hero">
         <Image src={myProfileImage} alt="Carl von Holly-Ponientzietz" class="profile-pic" />
         
@@ -199,23 +142,6 @@ const posts = (await getCollection('blog'))
           <li><strong>Music:</strong> I (used to) play the trombone in a <a href="https://www.jso-berlin-haendel.de/" target="_blank">symphony orchestra</a>!</li>
         </ul>
       </section>
-        </div>
-
-        <aside class="blog-column" aria-labelledby="blog-sidebar-title">
-          <h2 id="blog-sidebar-title">Latest blog posts</h2>
-          <ul class="blog-list">
-            {
-              posts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-                  <p class="blog-date"><FormattedDate date={post.data.pubDate} /></p>
-                </li>
-              ))
-            }
-          </ul>
-          <p><a href="/blog">See all posts →</a></p>
-        </aside>
-      </div>
     </main>
 
     <Footer />
