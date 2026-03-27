@@ -60,12 +60,15 @@ pre {
     max-width: 100%;
     overflow-x: auto; 
 }
-main {
-    width: 100%;             /* Take up the full width of whatever screen it is on */
-    max-width: 720px;        /* ...but never get wider than 720px on a big monitor */
-    margin: auto;            /* Keep it centered on big screens */
-    padding: 3em 1em;
-    box-sizing: border-box;  /* Ensures your 1em padding doesn't accidentally make it wider than 100% */
+main { 
+  box-sizing: border-box; /* 👈 ADD THIS: Keeps padding inside the 100% width */
+  width: 100%; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 2rem; 
+  font-family: 'Fira Sans', sans-serif; 
+  line-height: 1.6; 
+  color: #304263; 
 }
 h1,
 h2,
