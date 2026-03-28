@@ -43,6 +43,15 @@ body {
 	font-size: 20px;
 	line-height: 1.7;
 }
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	overflow-x: hidden;
+}
 /* Force images and videos to scale down */
 img, video {
     max-width: 100%;
@@ -60,14 +69,14 @@ pre {
     max-width: 100%;
     overflow-x: auto; 
 }
-main { 
-  width: 100%; 
-  max-width: 1200px; 
-  margin: 0 auto; 
-  padding: 2rem; 
-  font-family: 'Fira Sans', sans-serif; 
-  line-height: 1.6; 
-  color: #304263; 
+main {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	font-family: 'Fira Sans', sans-serif;
+	line-height: 1.6;
+	color: #304263;
 }
 h1,
 h2,
