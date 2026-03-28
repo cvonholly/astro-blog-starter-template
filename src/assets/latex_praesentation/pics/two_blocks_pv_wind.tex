@@ -1,0 +1,107 @@
+\begin{tikzpicture}[
+    node distance=0.8cm and 2cm,
+    >=Latex,
+    font=\footnotesize,
+    % Custom styles
+    line/.style={-Latex, thick},
+    sum_node/.style={draw, circle, fill=white, inner sep=0pt, minimum size=4mm},
+    outerdevice/.style={draw=#1, fill=#1!5, thick, minimum width=6cm, minimum height=2.2cm, rounded corners},
+    innerplant/.style={draw=black!70, fill=gray!30, thick, minimum width=2cm, minimum height=0.8cm, align=center, rounded corners=1pt},
+    innercontrol/.style={draw=#1!80!black, fill=#1!30, thick, minimum width=2cm, minimum height=0.6cm, rounded corners, align=center},
+    dashedbox/.style={draw=gray!60, dashed, rounded corners, thick, inner sep=1.5em},
+    % ADDED: Style for the split/takeoff points
+    branch/.style={fill, shape=circle, minimum size=4pt, inner sep=0pt}
+]
+
+% --- 1. Input Vector and Bus ---
+% \node[input] (inputvec) at (0,0) {};
+\node[input] (somevec) at (0,0) {};
+
+\coordinate (busStart) at ($(somevec)+(1.5,0)$);
+    
+% Shortened bus line to account for reduced spacing (removed dev3)
+\draw[thick] (busStart) -- ++(0,-2.4) coordinate (busEnd);
+
+% =====================================================================
+% === DEVICE 1 (solarPVColor) ===
+% =====================================================================
+\node[outerdevice=solarPVColor, right=of busStart, anchor=west] (dev1) {};
+\node[above, inner sep=2pt] at (dev1.north) {$T_1(s)$};
+
+\node[innerplant] (pre1) at ($(dev1.center)+(-1.3,0.4)$) {$m_\text{PV}(s) T_\mathrm{des}(s)$};
+\node[innerplant] (plant1) at ($(dev1.center)+(1.3,0.4)$) {PV};
+\node[innercontrol=solarPVColor, below=0.3cm of plant1] (control1) {control};
+
+\coordinate (splitIn1) at ($(dev1.west) + (0.6, 0)$);
+
+\draw[line] (busStart) |- (pre1.west);
+\draw[line] (pre1.east) |- (plant1.west);
+
+\coordinate (splitOut1) at ($(plant1.east) + (0.4, 0)$);
+\draw[thick] (plant1.east) -- (splitOut1); 
+\draw[line] (splitOut1) |- (control1.east);
+\draw[line] (control1.north) -- (plant1.south); 
+
+% Summation Node 1
+\node[sum_node, right=2.5cm of plant1.east] (sum1) {};
+
+% Output Arrow 1
+\draw[line] (plant1.east) -- node[near end, above] {$\Delta p_1$} (sum1);
+
+% INPUT VECTOR
+\coordinate (inplabel_start) at ($(plant1.west) + (-6.5, 0)$);
+\coordinate (inplabel_end) at ($(busStart) + (0, .4)$);
+\draw[line] (inplabel_start) -- node[pos=0, above] {$\Delta f$} (inplabel_end);
+
+% =====================================================================
+% === DEVICE 2 (WindColor) ===
+% =====================================================================
+\node[outerdevice=WindColor, below=0.5cm of dev1] (dev2) {};
+\node[above, inner sep=2pt] at (dev2.north) {$T_2(s)$};
+
+% ADAPTED INTERNALS
+\node[innerplant] (pre2) at ($(dev2.center)+(-1.3,0.4)$) {$m_\text{Wind}(s) T_\mathrm{des}(s)$};
+\node[innerplant] (plant2) at ($(dev2.center)+(1.3,0.4)$) {Wind};
+\node[innercontrol=WindColor, below=0.3cm of plant2] (control2) {control};
+
+% Wiring 
+\draw[line] (busStart |- pre2.west) -- (pre2.west);
+\draw[line] (pre2.east) |- (plant2.west);
+
+\coordinate (splitOut2) at ($(plant2.east) + (0.4, 0)$);
+\draw[line] (splitOut2) |- (control2.east); 
+\draw[line] (control2.north) -- (plant2.south);
+
+% Summation Node 2
+\node[sum_node, right=2.5cm of plant2.east] (sum2) {};
+
+% Output Arrow 2
+\draw[line] (plant2.east) -- node[near end, above] {$\Delta p_2$} (sum2);
+
+% =====================================================================
+% === AGGREGATION & BOXING ===
+% =====================================================================
+
+% Sum Interconnections (Removed connection from sum3)
+\draw[line] (sum2) -- (sum1) node[pos=0.1, right] {+};
+\node[above=0.03cm of sum1] {+};
+
+% Aggregate Output
+\coordinate (aggEnd) at ($(sum1.east)+(1.5,0)$);
+\draw[line] (sum1.east) -- node[midway, above] {$\Delta p_{\text{agg}}$} (aggEnd);
+
+% Grouping Boxes
+\begin{scope}[on background layer]
+    \node[dashedbox, draw=orgColor!80, fill=orgColor!5, fit=(dev1) (dev2), inner xsep=1em, label={[orgColor!80, font=\small, yshift=1ex]north:set of (controllable) DERs in DVPP}] (setControllable) {};
+\end{scope}
+
+% =====================================================================
+% === ADDED: BRANCH POINTS (Takeoff Nodes) ===
+% =====================================================================
+% 1. Split for Device 1 (At the top where bus starts)
+\node[branch] at (inplabel_end) {};
+
+% 2. Split for Device 2 (Intersection of bus and Dev2 input line)
+\node[branch] at (busStart |- pre2.west) {};
+
+\end{tikzpicture}

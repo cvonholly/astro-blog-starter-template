@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=0.8, transform shape]
+    % Node PV (Evaluating PV's marginal contribution)
+    \node[circle, draw=solarPVColor, fill=solarPVColor!15, text=solarPVColor!80!black, thick, minimum size=1.1cm] (PV) at (0, -1.5) {\textbf{PV}};
+    
+    % All possible coalitions PV can join
+    \node[rectangle, draw, fill=gray!10, minimum width=2.8cm, minimum height=0.6cm] (E)  at (4.5, 0) {Nobody ($\emptyset$)};
+    \node[rectangle, draw, fill=gray!10, minimum width=2.8cm, minimum height=0.6cm] (Wind)  at (4.5, -1) {Wind};
+    \node[rectangle, draw, fill=gray!10, minimum width=2.8cm, minimum height=0.6cm] (BESS)  at (4.5, -2) {BESS};
+    \node[rectangle, draw, fill=gray!10, minimum width=2.8cm, minimum height=0.6cm] (WindBESS) at (4.5, -3) {Wind \& BESS};
+    
+    % Arrows representing marginal contribution
+    \draw[-{Stealth}, thick, color=solarPVColor!80] (PV) -- (E.west);
+    \draw[-{Stealth}, thick, color=solarPVColor!80] (PV) -- (Wind.west);
+    \draw[-{Stealth}, thick, color=solarPVColor!80] (PV) -- (BESS.west);
+    \draw[-{Stealth}, thick, color=solarPVColor!80] (PV) -- (WindBESS.west);
+    
+    % Central Label
+    \node[fill=white, text=payColor!80!black, font=\footnotesize\bfseries, inner sep=2pt, align=center] at (2.25, -1.5) {Marginal Value\\Added to Each};
+\end{tikzpicture}

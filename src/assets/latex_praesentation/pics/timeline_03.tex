@@ -1,0 +1,115 @@
+\begin{tikzpicture}[
+        >=Latex,
+        font=\small,
+        % --- Styles ---
+        eventbox/.style={draw, rectangle, align=center, inner sep=4pt, minimum height=1.1cm, anchor=south},
+        timelabel/.style={below=3pt, align=center, font=\footnotesize},
+        dashedcyanbox/.style={rectangle, draw=cyan!80, fill=cyan!5, dashed, rounded corners, align=center, font=\small\color{cyan!80}, inner sep=3pt, anchor=center, minimum height=1.1cm},
+        dashedpinkbox/.style={rectangle, draw=payColor!80, fill=payColor!5, dashed, rounded corners, align=center, font=\small\color{payColor!80}, inner sep=3pt, anchor=center, minimum height=1.1cm},
+        dvpparrow/.style={->, solid, thick, cyan!80, shorten >=2pt, shorten <=2pt},
+        rwarrow/.style={->, solid, thick, payColor!80, shorten >=2pt, shorten <=2pt}
+    ]
+
+    % --- Define Horizontal Positions ---
+    \coordinate (start) at (0,0);
+    \coordinate (pos_dminus1_box) at (1.7, 0);
+    \coordinate (pos_submit) at (4.5, 0);
+    \coordinate (pos_fcr) at (5.2, 0);
+    \coordinate (pos_ffr) at (7.2, 0);
+    \coordinate (pos_delivery) at (9.8, 0);
+    \coordinate (pos_reward) at (12.5, 0);
+    \coordinate (end) at (13.8,0);
+
+    % --- Main Timeline Arrow ---
+    \node[draw, rectangle, anchor=east, minimum size=0.8cm] (d-1) at (start) {D-1};
+    \node[draw, rectangle, anchor=west, minimum size=0.8cm] (d+1) at (end) {D+1};
+    \draw[->, thick] (d-1.east) -- (d+1.west);
+
+    % --- Side Labels ---
+    \node (market_events) [draw=gray, dotted, rounded corners, above=0.25cm of d-1, font=\footnotesize, align=center] {Market Events};
+    \draw[dotted, gray, thick] (d-1.north) -- (market_events.south);
+    
+    \node (dvpp_events_label) [draw=gray, dotted, rounded corners, below=.5cm of d-1, font=\footnotesize, align=center] {Operation\\of DVPP $\mathcal{D}$};
+    \draw[dotted, gray, thick] (d-1.south) -- (dvpp_events_label.north);
+
+    \node (reward_mechanism_label) [draw=gray, dotted, rounded corners, below=.7cm of dvpp_events_label, font=\footnotesize, align=center] {Reward\\Mechanism\\for $\mathcal{N}$};
+    \draw[dotted, gray, thick] (dvpp_events_label.south) -- (reward_mechanism_label.north);
+
+    % === Row 1: Market Events ===
+    \pgfmathsetlengthmacro{\boxY}{0.2cm}
+    %\node[eventbox] at (pos_dminus1_box |- 0,\boxY) {Delivery\\of D-1};
+    \node[eventbox] at (pos_fcr |- 0,\boxY) {FCR\\market\\bids close};
+    \node[eventbox] at (pos_ffr |- 0,\boxY) {FFR\\market\\bids close};
+    \node[eventbox, minimum width=1.8cm] at (pos_delivery |- 0,\boxY) {Delivery\\for D};
+    \node[eventbox] at (pos_reward |- 0,\boxY) {Settlement};
+
+    % --- Time Labels ---
+    \node[timelabel] at (pos_dminus1_box) {12AM};
+    \node[timelabel] at (pos_fcr) {6:30 PM};
+    \node[timelabel] at (pos_ffr) {10:30 PM};
+    \node[timelabel] at (pos_delivery) {12AM - 11:59PM};
+
+    % === Row 2: DVPP Events ===
+    \node[dashedcyanbox] (dvpp1) at (pos_dminus1_box |- dvpp_events_label) {calculate\\$R_\gamma(\mathcal{D},\cdot)$};
+    \node[dashedcyanbox] (dvpp2) at (pos_submit |- dvpp_events_label) {submit bid\\$b^*(\mathcal{D})$};
+    \node[dashedcyanbox] (dvpp3) at (pos_delivery |- dvpp_events_label) {evaluate\\$h(\mathcal{D},b^*)$};
+    \node[dashedcyanbox] (dvpp4) at (pos_reward |- dvpp_events_label) {calculate\\reward\\$R(\mathcal{D},b^*)$};
+
+    % === Row 3: Reward Allocation ===
+    \node[dashedpinkbox] (q1) at (pos_ffr |- reward_mechanism_label) {?};
+    % \node[dashedpinkbox] (rw1) at (pos_dminus1_box |- reward_mechanism_label) {evaluate \\ $v_\mathbb{F}(S)$ \\ $\forall S\subseteq \mathcal{N}$};
+    % \node[dashedpinkbox] (rw3) at (pos_delivery |- reward_mechanism_label) {evaluate $h(S,b^*)$ \\ and $v_\mathcal{R}(S),$ \\ $\forall S \subseteq \mathcal{N}$};
+    % \node[dashedpinkbox] (rw4) at (pos_reward |- reward_mechanism_label) {split reward\\$v_\mathcal{R}(\mathcal{N})$\\among $i\in \mathcal{N}$};
+
+    % --- Connections ---
+    \draw[dvpparrow] (dvpp1) -- (dvpp2);
+    \draw[dvpparrow] (dvpp2) -- (dvpp3);
+    \draw[dvpparrow] (dvpp3) -- (dvpp4);
+    % \draw[rwarrow] (dvpp1) -- (rw1);
+    % \draw[rwarrow] (dvpp3) -- (rw3);
+    % \draw[rwarrow] (dvpp4) -- (rw4);
+    % \draw[rwarrow] (rw1) -- (rw3);
+    % \draw[rwarrow] (rw3) -- (rw4);
+
+    % =========================================================
+    % === INTEGRATED ZOOM: REWARD ALLOCATION (CENTERED) ===
+    % =========================================================
+    
+    % Center position shifted up to reduce whitespace
+    % Using (7.2, -4.2) places it comfortably just below the last row
+    % \coordinate (zoom_center) at (7.2, -5.5); 
+
+    % Embedding the exact xymatrix inside a TikZ node
+    % \node[draw=payColor, dashed, thick, rounded corners, fill=white, inner sep=5pt] (zoombox) at (zoom_center) {
+    %     \footnotesize
+    %     $
+    %     \xymatrix{
+    %         &
+    %         \text{Is }\mathcal{G}_\mathbb{F}\text{ convex?} \ar[ld]^{\text{\normalsize yes}} \ar[rd]_{\text{\normalsize no}} & \\
+    %         {\begin{array}{cc}
+    %             \text{Shapley Value} \\
+    %             \phi(v_\mathcal{R})
+    %         \end{array}}
+    %         &
+    %         &
+    %         {\begin{array}{cc}
+    %              \text{Nucleolus} \\
+    %             \mathbf{nc} (v_\mathcal{R}) 
+    %         \end{array}}
+    %     }
+    %     $
+    % };
+
+    % % Label for the zoom box
+    % \node[payColor, anchor=north east] at (zoombox.south east) {Definition of $A^*(\mathcal{N},v_\mathcal{R})$};
+
+    % Draw Zoom Lines (Connecting rw4 to the Center ZoomBox)
+    % Pointing from rw4 corners down to the zoom box
+    % \draw[payColor, dotted, ultra thick] (rw4.south west) -- (zoombox.north east);
+    % \draw[payColor, dotted, ultra thick] (rw4.south east) -- (zoombox.north east);
+
+    % draw more lines
+    % \draw[payColor, dotted, ultra thick] (rw1.south west) -- (zoombox.north west);
+    % \draw[payColor, dotted, ultra thick] (rw1.south east) -- (zoombox.north west);
+
+\end{tikzpicture}

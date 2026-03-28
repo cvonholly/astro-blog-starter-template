@@ -1,0 +1,27 @@
+\begin{tikzpicture}[scale=1.0, transform shape]
+        
+        % Individual Devices (Stacked on the left with custom colors)
+        \node[circle, draw=solarPVColor, fill=solarPVColor!15, text=solarPVColor!80!black, thick, minimum size=1.2cm] (PV) at (-5, 1.4) {\textbf{PV}};
+        \node[circle, draw=WindColor, fill=WindColor!15, text=WindColor!80!black, thick, minimum size=1.2cm] (Wind) at (-5, 0) {\textbf{Wind}};
+        \node[circle, draw=BESSColor, fill=BESSColor!15, text=BESSColor!80!black, thick, minimum size=1.2cm] (BESS) at (-5, -1.4) {\textbf{BESS}};
+        
+        % The DVPP (Grand Coalition in the center)
+        \node[ellipse, draw, fill=gray!10, thick, minimum width=1cm, minimum height=1cm, align=center] (DVPP) at (0, 0) {\textbf{Operate as DVPPs $\mathcal{D}\in P^*(\mathcal{N})$,} \\
+        Forecasted Value: $v_\mathbb{F}(\mathcal{S}),\,\forall\mathcal{S}\subseteq\mathcal{N}$ \\
+        Realized Value: $v_\mathcal{R}(\mathcal{S}),\,\forall\mathcal{S}\subseteq\mathcal{N}$};
+        
+        % Arrows showing them joining forces
+        \draw[-{Stealth}, thick, dashed, color=gray!80] (PV) to[out=0, in=150] (DVPP);
+        \draw[-{Stealth}, thick, dashed, color=gray!80] (Wind) to[out=0, in=180] (DVPP);
+        \draw[-{Stealth}, thick, dashed, color=gray!80] (BESS) to[out=0, in=210] (DVPP);
+        
+        % Descriptive label for the arrows
+        \node[font=\footnotesize, align=center, color=gray!80!black] at (-2.6, 1.8) {Combining DERs\\ capabilities \& limitations};
+        
+        % The core game theory question (Moved to the right)
+        \node[rectangle, draw=payColor, fill=payColor!10, thick, rounded corners, align=center, inner sep=6pt] (Question) at (8, 0) {How to divide Total Reward $v_\mathcal{R}(\mathcal{N})$?};
+        
+        % Arrow from DVPP to question
+        \draw[-{Stealth}, thick, payColor] (DVPP) -- (Question) node[midway, above, font=\footnotesize] {Payoff};
+        
+    \end{tikzpicture}

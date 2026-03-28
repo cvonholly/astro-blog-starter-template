@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=0.85, transform shape]
+    % Step 1: DVPP Asset nodes (Always visible)
+    \node[circle, draw=solarPVColor, fill=solarPVColor!15, text=solarPVColor!80!black, thick, minimum size=1.1cm] (PV) at (0, 0) {\textbf{PV}};
+    \node[circle, draw=WindColor, fill=WindColor!15, text=WindColor!80!black, thick, minimum size=1.1cm] (Wind) at (1.1, -1.8) {\textbf{Wind}};
+    \node[circle, draw=BESSColor, fill=BESSColor!15, text=BESSColor!80!black, thick, minimum size=1.1cm] (BESS) at (2.2, 0) {\textbf{BESS}};
+    
+    % Step 2: The Threat (Appears on slide 2)
+    % \uncover reserves the space on slide 1 so the diagram doesn't jump around
+    \uncover<2->{
+        \draw[red, thick, dashed, rounded corners] (-0.8, 0.8) rectangle (3.0, -0.8);
+        \node[red, font=\small\bfseries] at (1.1, 1.1) {Threaten to leave DVPP!};
+    }
+    
+    % Step 3: The Solution (Appears on slide 3)
+    \uncover<3->{
+    \draw[-{Stealth}, thick, payColor] (4.2, -1) -- (2.6, -0.4);
+    \node[payColor, align=center, font=\small\bfseries] at (4.2, -1.5) {Minimizing\\Complaint};
+    }
+\end{tikzpicture}
