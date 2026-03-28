@@ -4,6 +4,7 @@ description: "My Master Thesis explored how dynamic ancillary services will be p
 pubDate: "Mar 27 2026"
 heroImage: "/cover_MA.png"
 ---
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 
 *This blog post is a shortend and more blog-like version of my Master Thesis. The full text Master Thesis is available [here](https://drive.google.com/file/d/1pCPoJt1C8YLEp0EDTyXuijjh6lYNsOHB/view?usp=sharing).*
 
