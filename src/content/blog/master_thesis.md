@@ -36,6 +36,7 @@ The goal is to provide DAS with a set of DERs. Given an activation signal $\Delt
 $$\Delta p_{\mathrm{des}}
         = T_\mathrm{des}(s)
         \Delta f(s)$$
+and
 $$\Delta p_{i} (s)= T_i(s) \Delta f(s).$$
 We use a DER-specific Adaptive Dynamic Participation Factor (ADPF) $m_i(s)$ to encode each DER's role in the DVPP:
 $$T_i(s) = m_i(s) \cdot T_\mathrm{des}(s), \quad\forall i\in \mathcal{D}$$
