@@ -33,15 +33,13 @@ DAS are characterized by *fast* ancillary services, such as Fast Frequency Reser
 ## Dynamic Virtual Power Plant (DVPP) Control Design
 
 The goal is to provide DAS with a set of DERs. Given an activation signal $\Delta f(s)$, we formulate the desired power deviation $T_\mathrm{des}(s)$ and split the desired transfer function into local transfer functions $T_i(s)$:
-$$\Delta p_{\mathrm{des}}
-        = T_\mathrm{des}(s)
-        \Delta f(s)$$
+$$\Delta p_{\mathrm{des}}=T_\mathrm{des}(s)\Delta f(s)$$
 and
 $$\Delta p_{i} (s)= T_i(s) \Delta f(s).$$
 We use a DER-specific Adaptive Dynamic Participation Factor (ADPF) $m_i(s)$ to encode each DER's role in the DVPP:
 $$T_i(s) = m_i(s) \cdot T_\mathrm{des}(s), \quad\forall i\in \mathcal{D}$$
 The ADPF roles may for example include Low-pass, Band-pass, and High-pass filters. It is important to match the desired transfer function:
-$$ \sum_{i\in\mathcal{D}}m_i(s) \overset{!}{=} 1$$
+$$\sum_{i\in\mathcal{D}}m_i(s) \overset{!}{=}1$$
 
 ![Low Pass Filter](../../assets/latex_praesentation/pics/Low%20Pass%20Filter%20$m_i$.png)
 ![Band Pass Filter](../../assets/latex_praesentation/pics/Band%20Pass%20Filter%20$m_i$.png)
@@ -65,11 +63,7 @@ Now we move to a market setting where we embed the prviously presented control d
 ![blank](../../assets/latex_praesentation/pics/timeline_r3.png)
 
 where $R_\gamma(\mathcal{D},b) = b(\mathcal{D})\cdot[\pi \gamma_{\mathcal{D}}(b) - q (1-\gamma_{\mathcal{D}}(b))]$ is the (forecasted) probalistic reward (the reward $\mathcal{D}$ can expect when placing a bid $b$) with the pass probability $\gamma_{\mathcal{D}}(b)$, $b^*(\mathcal{D})\leftarrow \arg\max_{b} R_\gamma(\mathcal{D},b)$ is the optimal bid placed in the market, $h(\mathcal{D},b) \xrightarrow{\text{simulate bid activation}} \{\text{fail, pass}\}$ evaluates whether the DVPP is succesful delivering the bid and
-$$R(\mathcal{D}, b) =
-        \begin{cases}
-            \pi\cdot b(\mathcal{D}), & \text{if } h(\mathcal{D},b) = \text{pass}\\
-            -q\cdot b(\mathcal{D}) & \text{if } h(\mathcal{D},b) = \text{fail}
-        \end{cases}$$
+$$R(\mathcal{D}, b) = \begin{cases} \pi\cdot b(\mathcal{D}), & \text{if } h(\mathcal{D},b) = \text{pass}\\ -q\cdot b(\mathcal{D}) & \text{if } h(\mathcal{D},b) = \text{fail} \end{cases}$$
 is the realized reward.
 
 ### Quantify Value of DERs
@@ -86,7 +80,7 @@ Now we have all the ingredients to formulate a reward allocation based on the fo
 ### Cooperation Criteria
 
 To define a suitable Reward Allocation
-    $$A^*(\mathcal{N}):v_\mathcal{R}(\mathcal{N})\rightarrow[x_i]_{i\in\mathcal{N}}$$
+$$A^*(\mathcal{N}):v_\mathcal{R}(\mathcal{N})\rightarrow[x_i]_{i\in\mathcal{N}}$$
 we introduce a crucial set of cooperation criteria:
 * **C1: Rationality & Coalitional Stability**
 * **C2: Bayesian Incentive Compatibility**
