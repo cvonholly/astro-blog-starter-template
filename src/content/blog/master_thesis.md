@@ -52,9 +52,10 @@ The DVPP studied in this Thesis has the following control design:
 
 ![blank](../../assets/latex_praesentation/pics/threeblocks.png)
 
-<video width="640" height="480" controls>
-  <source src="/videos/ANI_simulation_data_FFR_+_FCR-D_PV+Wind+BESS_on_12_4_2025_at_11_.mp4" type="video/mp4">
-</video>
+<!-- <video width="640" height="480" controls>
+  <source src="/videos/ANI_simulation_data_FFR_+_FCR-D_PV+Wind+BESS_on_12_4_2025_at_11_.mp4" type="video/mp4"> -->
+<!-- </video> -->
+<iframe width="100%" height="400" src="https://youtu.be/p9uhmy2yA6w" title="Simulation Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Timeline
 
