@@ -1,8 +1,8 @@
 ---
 title: "Automatisierte Routenfindung für Velokuriere"
 description: "Ich habe meine Passion für Velokurieren bei Öpfelchasper mit einer automatisierten, digitalen Routenfindung bestückt."
-pubDate: "Mar 28 2026"
-heroImage: "/oepfelchasper_cover.png"
+pubDate: "Mar 29 2026"
+heroImage: "/oepfelchasper_cover.jpg"
 ---
 
 *Die Applikation ist [hier verfügbar!](https://oepfelchasper-scanner.carlvonholly.workers.dev/)*
