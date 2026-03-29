@@ -5,7 +5,7 @@ pubDate: "Mar 29 2026"
 heroImage: "/oepfelchasper_cover.jpg"
 ---
 
-*Die Applikation ist [hier verfügbar!](https://oepfelchasper-scanner.carlvonholly.workers.dev/)*
+*Die Applikation ist [hier verfügbar!](https://oepfel.cvonholly.cc/)*
 
 Montag 5 Uhr aufstehen. Über Die Hardturmbrücke düsen. Obstkörbe packen. Ausliefern bis um 13 Uhr. Ab in dei Vorlesung. Klingt spassig? Find ich auch! Als Velokurier bei Öpfelchasper sehen meine Montage seit knapp zwei Jahren so aus. Ich finde es eine erfüllende und spassige Arbeit die Strassen Zürichs mit dem Velo und grossen Anhängern zu beliefern. Und das Team ist einfach toll, man hilft sich wo man kann und plant coole Sachen.
 
