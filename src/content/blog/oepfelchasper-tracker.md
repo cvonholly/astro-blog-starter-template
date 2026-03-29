@@ -1,19 +1,19 @@
 ---
 title: "Automatisierte Routenfindung für Velokuriere"
-description: "Ich habe meine Passion für Velokurieren bei Öpfelchasper mit einer automatisierten, digitalen Routenfindung bestückt."
+description: "Ich habe meine Passion fürs Velokurieren bei Öpfelchasper mit einer automatisierten, digitalen Routenfindung bestückt."
 pubDate: "Mar 29 2026"
 heroImage: "/oepfelchasper_cover.jpg"
 ---
 
 *Die Applikation ist [hier verfügbar!](https://oepfel.cvonholly.cc/)*
 
-Montag 5 Uhr aufstehen. Über Die Hardturmbrücke düsen. Obstkörbe packen. Ausliefern bis um 13 Uhr. Ab in dei Vorlesung. Klingt spassig? Find ich auch! Als Velokurier bei Öpfelchasper sehen meine Montage seit knapp zwei Jahren so aus. Ich finde es eine erfüllende und spassige Arbeit die Strassen Zürichs mit dem Velo und grossen Anhängern zu beliefern. Und das Team ist einfach toll, man hilft sich wo man kann und plant coole Sachen.
+Montag, 5 Uhr aufstehen. Über die Hardturmbrücke düsen. Obstkörbe packen. Ausliefern bis um 13 Uhr. Ab in die Vorlesung. Klingt spassig? Find ich auch! Als Velokurier bei Öpfelchasper sehen meine Montage seit knapp zwei Jahren so aus. Ich finde es eine erfüllende und spassige Arbeit, die Strassen Zürichs mit dem Velo und grossen Anhängern zu beliefern. Und das Team ist einfach toll, man hilft sich, wo man kann, und plant coole Sachen.
 
-Die Routenfindung leuft analog über Ausfahrscheine. An sich ist das legitim, alle Stopps und Besonderheiten sind aufgelistet und eine grobe Karte auf der Rückseite kann die Routen anzeigen.
+Die Routenfindung läuft analog über Ausfahrscheine. An sich ist das legitim, alle Stopps und Besonderheiten sind aufgelistet und eine grobe Karte auf der Rückseite kann die Routen anzeigen.
 
 ![blank](../../assets/oepfelchasper/oepfelchasper_blank.jpg)
 
-Jedoch kennt man natürlich nicht jede Adresse auswendig und muss manchmal mühselig einzelne in Google Maps eintippen. Vor allem bei schlechtem Wetter kann die schmerzhaft sein.. Daher habe ich mir überlegt diesen Prozess, vom analogen zur digitalen Route zu automatisieren.
+Jedoch kennt man natürlich nicht jede Adresse auswendig und muss manchmal mühselig einzelne in Google Maps eintippen. Vor allem bei schlechtem Wetter kann dies schmerzhaft sein. Daher habe ich mir überlegt, diesen Prozess von der analogen zur digitalen Route zu automatisieren.
 
 ### Die Idee: Vom Papier direkt in Google Maps
 
@@ -26,7 +26,7 @@ Um das zu erreichen, musste ich drei Herausforderungen lösen:
 
 ### Der Tech-Stack: Leichtgewichtig und Serverless
 
-Da die App vor allem schnell und mobil funktionieren muss, habe ich auf schwere Frontend-Frameworks verzichtet. Die gesamte Anwendung – sowohl das User Interface als auch das sichere Backend für die API-Keys – läuft über ein einziges **Cloudflare Worker** Skript. Das bedeutet: Edge Computing, blitzschnelle Ladezeiten und quasi keine Hosting-Kosten.
+Da die App vor allem schnell und mobil funktionieren muss, habe ich auf schwere Frontend-Frameworks verzichtet. Die gesamte Anwendung – sowohl das User Interface als auch das sichere Backend für die API-Keys – läuft über ein einziges **Cloudflare Worker** Skript.
 
 ### Schritt 1 & 2: Wenn OCR fast *zu* gut funktioniert
 
