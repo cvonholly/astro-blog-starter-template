@@ -8,11 +8,29 @@ heroImage: "/norway_cover_image.jpg"
 This was maybe the most memorable trip of my lifetime, only lasting 8 days. With my buddy Colin and brother Jacob, we explored the Lyngen Alps with an electric VW ID Buzz. The space was tight, but the advantage was that it kept us warm: ![alt text](../../assets/lyngen/van_tight.jpg)
 
 Arriving late in Tromso, we were welcomed with green Northern Lights, not bad.
+<iframe 
+  width="315" 
+  height="560" 
+  src="https://www.youtube.com/embed/Ke7Fg5M_5T0" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe>
 
 Of course this adventure had its shortcomings; some important ski mountaineering items were missing, we couldn't refill our gas cartridges and the rear car door hit my head shortly before departure. That said, the remaining experience was enormous. Our first "quick afternoon tour" already gave us a glimpse of the impressive nature: ![first day](../../assets/lyngen/first_day.jpg)
 
 The best snow of the trip laid under our skis on the second day. We set out for **Holmbuktinden** despite bad weather and were rewarded big time. Two other parties set out for the same peak and after some strong winds and bad visibility, which allowed us to do one nice descent in the snow, there was finally a window for reaching the summit. 
 ![view](../../assets/lyngen/IMG_20260312_150433.jpg)
+<iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/okcOuen2vOk" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe>
 On the descent, we could finally see in what crazy landscape we were in and enjoyed it big time:
 ![view](../../assets/lyngen/IMG_20260312_155500.jpg)
 My [Strava activity](https://www.strava.com/activities/17698840976) includes some more videos and images of the day.
@@ -26,4 +44,13 @@ Storgalten is definitely a peak I want to come back to, as there are numerous de
 
 We were just in time for a nice sunny descent, after testing the snow stability; in our case Colin did so being roped on.
 
-It's hard to describe the trip only in words and images, so I made a video of our trip [here](https://youtu.be/eDoZkGmJuYA?is=qVEc6O8cDTkzH02I).
+It's hard to describe the trip only in words and images, so I made a video of our trip:
+<iframe 
+  width="560" 
+  height="315" 
+  src="https://youtu.be/eDoZkGmJuYA" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe>
