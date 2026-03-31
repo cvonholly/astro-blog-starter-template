@@ -7,6 +7,17 @@ heroImage: "/oepfelchasper_cover.jpg"
 
 *Die Applikation ist [hier verfügbar!](https://oepfel.cvonholly.cc/)*
 
+*Demo Video:*
+<iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/UgWYL_IrkJ0" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe>
+
 Montag, 5 Uhr aufstehen. Über die Hardturmbrücke düsen. Obstkörbe packen. Ausliefern bis um 13 Uhr. Ab in die Vorlesung. Klingt spassig? Find ich auch! Als Velokurier bei Öpfelchasper sehen meine Montage seit knapp zwei Jahren so aus. Ich finde es eine erfüllende und spassige Arbeit, die Strassen Zürichs mit dem Velo und grossen Anhängern zu beliefern. Und das Team ist einfach toll, man hilft sich, wo man kann, und plant coole Sachen.
 
 Die Routenfindung läuft analog über Ausfahrscheine. An sich ist das legitim, alle Stopps und Besonderheiten sind aufgelistet und eine grobe Karte auf der Rückseite kann die Routen anzeigen.
