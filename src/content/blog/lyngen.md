@@ -31,8 +31,10 @@ The best snow of the trip laid under our skis on the second day. We set out for 
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
   allowfullscreen>
 </iframe>
-On the descent, we could finally see in what crazy landscape we were in and enjoyed it big time:
+On the descent, we could finally see in what crazy landscape we were in and enjoyed it big time 
+
 ![view](../../assets/lyngen/IMG_20260312_155500.jpg)
+
 My [Strava activity](https://www.strava.com/activities/17698840976) includes some more videos and images of the day.
 
 The following days were characterized by strong winds and some rainfall. Not ideal for ski touring, but we could still choose some more mellow options in order to reach one summit every day. Also, we met the fittest dog imaginable in my mind: while skinning up in a good pace to Fastdalstinden, a split boarder overtook us with his Husky-like dog basically pulling him up the mountain. The animal looked like not weighing over 40kg and extremely strong. We talked to him and he confirmed that the dog made him a lot faster in the uphill: ![view](../../assets/lyngen/IMG_20260314_120936.jpg)
@@ -44,12 +46,12 @@ Storgalten is definitely a peak I want to come back to, as there are numerous de
 
 We were just in time for a nice sunny descent, after testing the snow stability; in our case Colin did so being roped on.
 
-It's hard to describe the trip only in words and images, so I made a video of our trip:
+It's hard to describe the trip only in words and images, so I made a video of our trip: [here](https://youtu.be/eDoZkGmJuYA?is=qVEc6O8cDTkzH02I).
 <iframe 
   width="560" 
   height="315" 
-  src="https://youtu.be/eDoZkGmJuYA" 
-  title="YouTube video player" 
+  src="https://youtu.be/eDoZkGmJuYA?is=qVEc6O8cDTkzH02I" 
+  title="Lyngen Hype" 
   frameborder="0" 
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
   allowfullscreen>
