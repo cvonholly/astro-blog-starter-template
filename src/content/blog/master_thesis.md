@@ -6,7 +6,7 @@ heroImage: "/cover_MA.png"
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 
-*This blog post is a shortened and more blog-like version of my Master Thesis. The full text Master Thesis is available [here](https://drive.google.com/file/d/1pCPoJt1C8YLEp0EDTyXuijjh6lYNsOHB/view?usp=sharing).*
+*This blog post is a shortened and more blog-like version of my Master Thesis. The full text Master Thesis with all the formulas and proofs is available [here](https://drive.google.com/file/d/1pCPoJt1C8YLEp0EDTyXuijjh6lYNsOHB/view?usp=sharing).*
 
 The global transition toward renewable energy is moving forward for good economic and environmental reasons, but during my master's research, I focused on two significant technical and economic challenges it presents. First, as synchronous power plants get replaced with distributed energy resources, power grids have a lower inertia, meaning faults lead to larger instantaneous frequency deviations. Second, the market value of renewables (e.g., wind and solar PV) is decreasing as their share of production grows.
 
@@ -98,7 +98,7 @@ The final proposed Reward Allocation looks as follows:
 To satisfy the largest set of criteria possible, two methods were employed in my Thesis.
 
 * **The Shapley Value:** When the assets have a positive network effect, meaning the marginal returns increase as the set of DERs grows and denoted as a "convex game"—the Shapley Value is the ideal approach. It distributes the reward based strictly on the average marginal contribution of each asset. It ensures that individual effort is proportionally rewarded on a level playing field, satisfying the condition of fairness.
-* **The Nucleolus:** Sometimes, there is only a small or no incentive to cooperate and no convex game. In this case, the Nucleolus minimizes the maximum dissatisfaction for all DERs, such that no DER wants to leave the cooperation. It calculates the payout by lexicographically maximizing the excess of the most dissatisfied coalition. While it sacrifices some linearity and fairness compared to the Shapley Value, it guarantees stability by ensuring no DER is incentivized to leave the grand coalition.
+* **The Nucleolus:** Sometimes, there is only a small or no incentive to cooperate. We call this game "non-convex". In this case, the Nucleolus minimizes the maximum dissatisfaction for all DERs, such that no DER wants to leave the cooperation. It calculates the payout by lexicographically maximizing the excess of the most dissatisfied coalition. While it sacrifices some linearity and fairness compared to the Shapley Value, it guarantees stability by ensuring no DER is incentivized to leave the grand coalition.
 
 ### The Real-World Test: The Finnish Grid
 
@@ -121,6 +121,6 @@ The BESS emerged as the most significant beneficiary of this teamwork. Because o
 
 ### The Ultimate Coalition
 
-Writing this thesis taught me that as our grid becomes highly renewable, we cannot rely on individual assets operating in silos. They must act as a coordinated, dynamic system. But control engineering alone isn't enough; the economic incentives have to align.
+Writing this thesis taught me that as our grid becomes highly renewable, we cannot rely on individual assets operating in silos. To provide nesceccary services for the future power grid, they must act as a coordinated, dynamic system. Economic incentives guaranteed through Game Theory can ensure this cooperation.
 
-Ironically, I experienced the power of a "grand coalition" firsthand while writing this. Teaming up with my incredible supervisors—Verena, Saverio, and Florian—boosted my own "payoff" from confusion to clarity. Without them, my standalone value would have been much lower!
+I experienced the power of a "grand coalition" firsthand while writing this. Teaming up with my incredible supervisors: Verena, Saverio, and Florian boosted my own payoff from confusion to clarity. Without them, my standalone value would have been much lower!
