@@ -65,7 +65,7 @@ Now we move to a market setting where the previously presented control design is
 
 where $R_\gamma(\mathcal{D},b) = b(\mathcal{D})\cdot[\pi \gamma_{\mathcal{D}}(b) - q (1-\gamma_{\mathcal{D}}(b))]$ is the (forecasted) probabilistic reward (the reward $\mathcal{D}$ can expect when placing a bid $b$) with the pass probability $\gamma_{\mathcal{D}}(b)$, $b^*(\mathcal{D})\leftarrow \arg\max_{b} R_\gamma(\mathcal{D},b)$ is the optimal bid placed in the market, $h(\mathcal{D},b) \xrightarrow{\text{simulate bid activation}} \{\text{fail, pass}\}$ evaluates whether the DVPP is successful delivering the bid and
 $$R(\mathcal{D}, b) = \begin{cases} \pi\cdot b(\mathcal{D}), & \text{if } h(\mathcal{D},b) = \text{pass}\\ -q\cdot b(\mathcal{D}) & \text{if } h(\mathcal{D},b) = \text{fail} \end{cases}$$
-is the realized reward.
+is the realized reward, where $\pi$ is the price of the DAS and $q$ the penalty of the DAS.
 
 ### Quantify Value of DERs
 
@@ -89,16 +89,22 @@ we introduce a crucial set of cooperation criteria:
 * **C4: Fairness**
 * **C5: Ex-Post Consistency**
 
+C1 is the most important criteria: it gurantees that every DER is best of in the grand coalition (all DERs togehter), thus has no incentive to form sub-coalitions or bid alone. C2 means that every DER reveals their private information truthfully, assuming that the other DERs also act truthfully. Optimiality and Feasibility (C3) simply indicate that the operation of the DVPP is physically implementable and that it bids optimally. 
+
+Next up, Although Fairness (C4) is sometimes perceived as a subjective and debated concept, there are attempts to define Fairness objectively. Oftentimes, fair outcomes lie between equality and optimality (Hall et al., 2025). There exists a rich literature on Fairness concepts and measures (Soares et al., 2024; Ostmann & Meinhardt, 2008; de Clippel & Rozen, 2022). In this work, we adopt the first principles presented in the GT foundations in van den Brink (2002) and the application of Fairness concepts for DERs in Cuenca et al. (2023). Cuenca et al. (2023) compares various outcomes of DERs installation in the grid, depending on the deployment policy of DERs. They define a fair outcome as an equity criterion: a fair allocation ensures that individual effort is proportionally rewarded, given an equal opportunity to participate (a level playing ground). Translating this definition to Cooperative Game Theory, an allocation is fair if it fulfills the balanced contributions axiom.
+
+Finally, Ex-Post Consistency is the relation of Forecasted and Realized Reward: if they align, up to a bias factor of the forecast, I call the game **Ex-Post Consistent**.
+
 ### Proposed Reward Allocation
 
-The final proposed Reward Allocation looks as follows:
+Now that both the cooperation criteria and the market operation of the DVPP are established, the proposed reward allocation can be presented:
 
 ![blank](../../assets/latex_praesentation/pics/proposed_solution.png)
 
 To satisfy the largest set of criteria possible, two methods were employed in my Thesis.
 
-* **The Shapley Value:** When the assets have a positive network effect, meaning the marginal returns increase as the set of DERs grows and denoted as a "convex game"—the Shapley Value is the ideal approach. It distributes the reward based strictly on the average marginal contribution of each asset. It ensures that individual effort is proportionally rewarded on a level playing field, satisfying the condition of fairness.
-* **The Nucleolus:** Sometimes, there is only a small or no incentive to cooperate. We call this game "non-convex". In this case, the Nucleolus minimizes the maximum dissatisfaction for all DERs, such that no DER wants to leave the cooperation. It calculates the payout by lexicographically maximizing the excess of the most dissatisfied coalition. While it sacrifices some linearity and fairness compared to the Shapley Value, it guarantees stability by ensuring no DER is incentivized to leave the grand coalition.
+* **The Shapley Value:** In the thesis, I show that the Shapley Value leads to conditions C1 to C5 being satisfied, if the value function is "convex". Convexity implies that the DERs have a positive network effect, meaning the marginal returns increase as the set of DERs grows. The Shapley Value distributes the reward based on the average marginal contribution of each DER. It ensures that individual effort is proportionally rewarded on a level playing field, satisfying the condition of Fairness. 
+* **The Nucleolus:** Sometimes, the convexity property is not fulfilled, for example when the risk preferences of the DERs is significantly different. In this case, the Shapley Value cannot guarantee the most important critera, Colaitional Stability (C1), and the Nucleolus is applied. The Nucleolus always fulfills criteria C1 to C3, but not nesceccarily C4 and C5. It minimizes the maximum dissatisfaction for all DERs, such that no DER wants to leave the cooperation. It calculates the payout by lexicographically maximizing the excess of the most dissatisfied coalition. While it sacrifices some linearity (C5) and Fairness (C4) compared to the Shapley Value, it ensures coalitional stability by proimising that no DER is incentivized to leave the grand coalition.
 
 ### The Real-World Test: The Finnish Grid
 
@@ -113,14 +119,8 @@ Operating a DVPP in this market is high-stakes; failing to deliver the promised 
 
 ### The Results: Better Together
 
-The simulation proved my hypothesis: cooperation is highly effective. Operating together as a DVPP yielded 16% higher revenue compared to the assets operating completely on their own:
+The simulation proved my hypothesis: cooperation is highly effective. Operating together as a DVPP yielded 16% higher revenue compared to the DERs operating completely on their own:
 
 ![blank](../../assets/latex_praesentation/pics/average_forecasted_and_realized_rewards.png)
 
 The BESS emerged as the most significant beneficiary of this teamwork. Because of its extremely fast response times, it earned a reward that exceeded its standalone value by 40%. Meanwhile, the solar and wind plants benefited considerably from the battery compensating for production shortfalls when the wind died down or clouds rolled in, saving them from massive financial penalties.
-
-### The Ultimate Coalition
-
-Writing this thesis taught me that as our grid becomes highly renewable, we cannot rely on individual assets operating in silos. To provide nesceccary services for the future power grid, they must act as a coordinated, dynamic system. Economic incentives guaranteed through Game Theory can ensure this cooperation.
-
-I experienced the power of a "grand coalition" firsthand while writing this. Teaming up with my incredible supervisors: Verena, Saverio, and Florian boosted my own payoff from confusion to clarity. Without them, my standalone value would have been much lower!
